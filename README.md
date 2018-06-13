@@ -1,4 +1,4 @@
-# ML Pipeline Tutorial
+# Streaming Machine-Learning Pipeline: Tutorial
 ![Pipeline](https://github.com/mrubash1/ml_pipeline_tutorial/blob/master/content/ml_pipeline.png)
 
 ## Requisites
