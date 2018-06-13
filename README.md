@@ -61,8 +61,7 @@ The Node file app/index.js does several functions:
 - translates the extracted text and queues the translated text to be saved back to Cloud Storage
 - receives the translated text and saves it back to Cloud Storage
 
-**Navigate to $ml_pipeline_tutorial/app**
-To deploy the process image function:
+To deploy the process image function first ```cd $ml_pipeline_tutorial/app```, then:
 ```
 gcloud beta functions deploy ocr-extract --trigger-bucket ml_pipeline_tutorial_v0 --entry-point processImage
 ```
