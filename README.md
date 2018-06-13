@@ -54,6 +54,7 @@ Set up the app/config.json file
 ```
 **And make sure to create these buckets!**
 
+### Setup index.js
 The Node file app/index.js does several functions:
 - import several dependencies in order to communicate with Google Cloud Platform services
 - reads an uploaded image file from Cloud Storage and calls the detectText function
@@ -61,6 +62,7 @@ The Node file app/index.js does several functions:
 - translates the extracted text and queues the translated text to be saved back to Cloud Storage
 - receives the translated text and saves it back to Cloud Storage
 
+### Deploy the cloud functions
 To deploy the process image function first ```cd $ml_pipeline_tutorial/app```, then:
 ```
 gcloud beta functions deploy ocr-extract --trigger-bucket ml_pipeline_tutorial_v0 --entry-point processImage
