@@ -1,5 +1,5 @@
 # ML_Pipeline_Tutorial
-![Pipeline](https://github.com/mrubash1/ml_pipeline_tutorial/content/ml_pipeline.png)
+![Pipeline](https://github.com/mrubash1/ml_pipeline_tutorial/blob/master/content/ml_pipeline.png)
 
 ## Requisites
 - gcloud command line tool
