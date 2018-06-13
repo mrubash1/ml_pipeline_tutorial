@@ -1,0 +1,7 @@
+{
+  "RESULT_TOPIC": "ml_pipeline_v0_result_topic",
+  "RESULT_BUCKET": "ml_pipeline_v0_result_bucket",
+  "TRANSLATE_TOPIC": "ml_pipeline_v0_translate_topic",
+  "TRANSLATE": true,
+  "TO_LANG": ["en", "fr", "es", "ja", "ru"]
+}

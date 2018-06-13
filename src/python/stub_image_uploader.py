@@ -15,7 +15,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 def write_to_storage(project, bucket_name, local_filename, output_name):
     # get time stamp into name
     formatted_time = time.strftime('%Y_%m_%d-%H_%M_%S',time.localtime(time.time())) 
-    output_name_with_timestamp=output_name + formatted_time + '.jpg'
+    output_name_with_timestamp=output_name + '_' + formatted_time + '.jpg'
     # bucket orientation
     client = storage.Client(project)
     bucket = client.get_bucket(bucket_name)
