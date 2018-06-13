@@ -1,0 +1,22 @@
+- click==6.7
+- enum34==1.1.6
+- future==0.16.0
+- futures==3.2.0
+- gax-google-logging-v2==0.8.3
+- gax-google-pubsub-v1==0.8.3
+- gcloud==0.18.3
+- google-gax==0.12.5
+- googleapis-common-protos==1.5.3
+- grpc-google-logging-v2==0.8.1
+- grpc-google-pubsub-v1==0.8.1
+- grpcio==1.13.0rc1
+- httplib2==0.11.3
+- oauth2client==4.1.2
+- pillow==5.1.0
+- ply==3.8
+- protobuf==3.5.2.post1
+- pyasn1==0.4.3
+- pyasn1-modules==0.2.1
+- rsa==3.4.2
+- six==1.11.0
+
