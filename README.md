@@ -34,13 +34,12 @@ python $ml_pipeline_tutorial/src/python/stub_image_uploader.py \
 ```
 This specific bucket can be found [here](https://console.cloud.google.com/storage/browser/ml_pipeline_tutorial_v0?project=myproject-204318)
 
+
 ## OCR pipeline with Google Cloud Functions 
-TODO: Show pipeline here
 To see the logs after images are uploaded to the bucket:
 ```
 gcloud beta functions logs read --limit 100
 ```
-
 ### OCR pipeline setup
 _The following section borrows extensively from [Google's OCR Tutorial](https://cloud.google.com/functions/docs/tutorials/ocr)_
 Set up the app/config.json file
