@@ -39,7 +39,7 @@ if __name__ == '__main__':
     @click.command()
     @click.option('--project', default='myproject-204318', help='GCloud project name', type=str)
     @click.option('--bucket_name', default='ml_pipeline_tutorial_v0', help='Cloud storage bucket name', type=str)
-    @click.option('--local_filename', default='/Users/mattrubashkin/ml_pipeline_tutorial/notebooks/caltrain.jpg',
+    @click.option('--local_filename', default='/Users/mattrubashkin/ml_pipeline_tutorial/data/caltrain.jpg',
          help='Local filename location', type=str)
     @click.option('--output_name', default='caltrain', help='Base output filename for cloud storage', type=str)
 
