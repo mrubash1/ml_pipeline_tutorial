@@ -1,4 +1,4 @@
-# ML_Pipeline_Tutorial
+# ML Pipeline Tutorial
 ![Pipeline](https://github.com/mrubash1/ml_pipeline_tutorial/blob/master/content/ml_pipeline.png)
 
 ## Requisites
