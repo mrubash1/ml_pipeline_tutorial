@@ -4,7 +4,7 @@
 ## Requisites
 - gcloud command line tool
 - set the [google application credentials](https://cloud.google.com/docs/authentication/getting-started)
-- enable the following GCP APIs (cloud functions, cloud vision api, cloud pubsub, cloud storage, cloud translate api)
+- enable the following GCP APIs (cloud functions, cloud vision api, cloud pubsub, cloud storage, cloud translate api, ml)
 - conda
 
 ## Setup 
@@ -75,4 +75,70 @@ To deploy the saveResult function with a Cloud Pub/Sub trigger:
 ```
 gcloud beta functions deploy ocr-save --trigger-topic ml_pipeline_v0_result_topic --entry-point saveResult
 
+```
+
+### Work in Progress - Install Object Detection Model
+```
+source activate ml_pipeline
+pip install tensorflow
+pip install Cython
+pip install jupyter
+pip install matplotlib
+pip install pillow
+pip install lxml
+```
+Install a clean version of tensorflow models within the library
+Then move the cocodataset to tensorflow/models/research directory
+```
+cd $ml_pipeline_tutorial
+git clone https://github.com/tensorflow/models
+git clone https://github.com/cocodataset/cocoapi.git
+cd cocoapi/PythonAPI
+make
+cp -r pycocotools ../../models/research/
+```
+Compile the protobuffs. If on a Mac, first:
+```
+brew install protobuf
+```
+When protobuf installed:
+```
+cd $ml_pipeline_tutorial/models/research
+protoc object_detection/protos/*.proto --python_out=.
+```
+Add libraries to python path
+```
+echo "export PYTHONPATH=$PYTHONPATH:$ml_pipeline_tutorial/models/research/slim" >> ~/.bash_profile
+source ~/.bash_profile
+```
+Test if successful
+```
+python $ml_pipeline_tutorial/models/research/object_detection/builders/model_builder_test.py
+```
+
+### Work with deploying model
+Download standard object detection model and inference package
+```
+cd $ml_pipeline_tutorial/models/research/object_detection
+curl http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_v2_coco_2018_01_28.tar.gz | tar -xz
+rm faster_rcnn_inception_v2_coco_2018_01_28.tar.gz
+```
+Upload the trained model and pbtext to google cloud storage
+```
+cd $ml_pipeline_tutorial/models/research/object_detection
+gsutil -m cp -R faster_rcnn_inception_v2_coco_2018_01_28/  gs://mr_faster_rcnn_inception_v2_coco_2018_01_28
+$ gsutil -m cp -R data/mscoco_label_map.pbtxt  gs://mr_faster_rcnn_inception_v2_coco_2018_01_28/faster_rcnn_inception_v2_coco_2018_01_28/saved_model.pbtxt
+```
+Create a GCP ML Engine Model
+```
+MODEL_NAME="mr_faster_rcnn_inception_v2_coco_2018_01_28"
+gcloud ml-engine models create $MODEL_NAME
+DEPLOYMENT_SOURCE="gs://mr_faster_rcnn_inception_v2_coco_2018_01_28/faster_rcnn_inception_v2_coco_2018_01_28/saved_model"
+gcloud ml-engine versions create "v1_0"\
+    --model $MODEL_NAME --origin $DEPLOYMENT_SOURCE
+```
+Check that it worked
+```
+gcloud ml-engine versions describe "v1_0" \
+    --model $MODEL_NAME
 ```
